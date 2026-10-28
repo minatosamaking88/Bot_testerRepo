@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "type": "api",
+  "start": "bash run_preview.sh",
+  "port": 4173,
+  "install": [
+    {
+      "name": "Python 3.15.2",
+      "check": "mise exec -- python -c 'import sys; raise SystemExit(sys.version_info[:2] != (3, 15))'",
+      "run": "mise use python@3.15.2",
+      "inputs": [".mise.toml"]
+    },
+    {
+      "name": "Python dependencies",
+      "check": "test -x .venv/bin/python && .venv/bin/python -c 'import fastapi, httpx, httpx2, pytest, uvicorn' && test -x .venv/bin/ruff",
+      "run": "mise exec -- python -m venv .venv && .venv/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt",
+      "inputs": ["requirements.txt", "requirements-dev.txt"]
+    }
+  ]
+}
