@@ -1,0 +1,14 @@
+# Python virtual environments and caches
+.venv/
+.revolte/runtime/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Crash artifacts
+core
+core.*
+*.heapsnapshot
+report.*.json
+isolate-*.log
